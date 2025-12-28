@@ -88,6 +88,40 @@ document.getElementById('addProductBtn').addEventListener('click', () => {
     openProductModal();
 });
 
+// Export Products Button
+const exportProductsBtn = document.getElementById('exportProductsBtn');
+if (exportProductsBtn) {
+    exportProductsBtn.addEventListener('click', () => {
+        const products = JSON.parse(localStorage.getItem('adminProducts') || '[]');
+        const media = JSON.parse(localStorage.getItem('adminMedia') || '[]');
+        
+        if (products.length === 0) {
+            alert('Нет товаров для экспорта');
+            return;
+        }
+        
+        const data = {
+            products: products,
+            media: media,
+            updatedAt: new Date().toISOString()
+        };
+        
+        // Create JSON file
+        const dataStr = JSON.stringify(data, null, 2);
+        const dataBlob = new Blob([dataStr], { type: 'application/json' });
+        const url = URL.createObjectURL(dataBlob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'zipseoul-products-' + new Date().getTime() + '.json';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+        
+        alert('Товары экспортированы! Загрузите этот файл в корень проекта как "products-data.json" для автоматической загрузки.');
+    });
+}
+
 // Modal
 const productModal = document.getElementById('productModal');
 const productForm = document.getElementById('productForm');
@@ -359,10 +393,96 @@ productForm.addEventListener('submit', (e) => {
     
     localStorage.setItem('adminProducts', JSON.stringify(products));
     
+    // Save to server/repository
+    saveProductsToServer(products);
+    
+    // Also create downloadable file for manual upload
+    createProductsFile(products);
+    
     loadProducts();
     closeProductModal();
+    
+    // Schedule auto-save
+    scheduleAutoSave();
+    
     alert('Товар успешно сохранен!');
 });
+
+// Save products to server (GitHub/Vercel)
+async function saveProductsToServer(products) {
+    try {
+        const response = await fetch('/api/save-products', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                products: products,
+                media: JSON.parse(localStorage.getItem('adminMedia') || '[]')
+            })
+        });
+
+        const result = await response.json();
+        
+        if (response.ok) {
+            console.log('Products saved to repository:', result);
+            showNotification('Товары успешно сохранены в репозиторий!', 'success');
+        } else {
+            console.error('Error saving products:', result);
+            showNotification('Ошибка при сохранении в репозиторий. Используйте экспорт файла для ручной загрузки.', 'warning');
+        }
+    } catch (error) {
+        console.error('Error saving products to server:', error);
+        showNotification('Используйте кнопку "Экспорт товаров" для сохранения в репозиторий.', 'info');
+    }
+}
+
+// Create downloadable products file
+function createProductsFile(products) {
+    const data = {
+        products: products,
+        media: JSON.parse(localStorage.getItem('adminMedia') || '[]'),
+        updatedAt: new Date().toISOString()
+    };
+    
+    const dataStr = JSON.stringify(data, null, 2);
+    const dataBlob = new Blob([dataStr], { type: 'application/json' });
+    
+    // Store in localStorage for download
+    localStorage.setItem('productsExport', dataStr);
+}
+
+// Notification function
+function showNotification(message, type = 'info') {
+    // Remove existing notification
+    const existing = document.getElementById('adminNotification');
+    if (existing) {
+        existing.remove();
+    }
+
+    const notification = document.createElement('div');
+    notification.id = 'adminNotification';
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 15px 25px;
+        background: ${type === 'success' ? '#4caf50' : type === 'warning' ? '#ff9800' : '#2196f3'};
+        color: white;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        z-index: 10000;
+        font-weight: 500;
+        animation: slideIn 0.3s ease;
+    `;
+    notification.textContent = message;
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+    }, 5000);
+}
 
 // Edit Product
 function editProduct(index) {

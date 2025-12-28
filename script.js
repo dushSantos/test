@@ -40,12 +40,27 @@ class Carousel {
         this.items = [];
         this.autoPlayInterval = null;
         
+        // Init is async, call it separately
         this.init();
     }
 
-    init() {
-        // Load media from admin panel (localStorage)
-        const adminMedia = JSON.parse(localStorage.getItem('adminMedia') || '[]');
+    async init() {
+        // Load media from file or localStorage
+        let adminMedia = [];
+        
+        try {
+            // First try to load from products-data.json file
+            const response = await fetch('products-data.json');
+            if (response.ok) {
+                const fileData = await response.json();
+                if (fileData.media && fileData.media.length > 0) {
+                    adminMedia = fileData.media;
+                }
+            }
+        } catch (e) {
+            // Fallback to localStorage
+            adminMedia = JSON.parse(localStorage.getItem('adminMedia') || '[]');
+        }
         
         if (adminMedia.length > 0) {
             this.items = adminMedia.map(media => {
@@ -202,6 +217,8 @@ class Carousel {
 // Initialize Carousel (only if carousel elements exist)
 if (document.getElementById('carouselTrack')) {
     const carousel = new Carousel();
+    // Init is async, but we don't need to wait for it
+    carousel.init();
 }
 
 
