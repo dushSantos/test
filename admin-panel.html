@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель - ZipSeoul</title>
+    <link rel="icon" type="image/jpeg" href="ave.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2>ZipSeoul</h2>
+            <p>Админ-панель</p>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-section="products">
+                <i class="fas fa-box"></i>
+                <span>Товары</span>
+            </a>
+            <a href="#" class="nav-item" data-section="media">
+                <i class="fas fa-images"></i>
+                <span>Медиа</span>
+            </a>
+            <a href="index.html" class="nav-item" target="_blank">
+                <i class="fas fa-external-link-alt"></i>
+                <span>На сайт</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <button class="btn-logout" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Выйти</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="admin-header">
+            <h1 id="pageTitle">Управление товарами</h1>
+            <button class="btn-primary" id="addProductBtn">
+                <i class="fas fa-plus"></i>
+                Добавить товар
+            </button>
+        </header>
+
+        <!-- Products Section -->
+        <section class="content-section active" id="productsSection">
+            <div class="products-list" id="productsList">
+                <!-- Products will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Media Section -->
+        <section class="content-section" id="mediaSection">
+            <div class="media-upload">
+                <h3>Загрузить медиа-файлы</h3>
+                <p style="color: #666; margin-bottom: 20px; font-size: 0.9rem;">
+                    <i class="fas fa-info-circle"></i> Файлы сохраняются в браузере (localStorage). 
+                    Для сохранения в корень проекта используйте функцию экспорта.
+                </p>
+                <div class="upload-area" id="uploadArea">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Перетащите файлы сюда или нажмите для выбора</p>
+                    <input type="file" id="fileInput" multiple accept="image/*,video/*" style="display: none;">
+                </div>
+                <div style="margin: 20px 0;">
+                    <button class="btn-secondary" id="exportMediaBtn" style="width: 100%;">
+                        <i class="fas fa-download"></i> Экспортировать медиа-файлы (JSON)
+                    </button>
+                </div>
+                <div class="uploaded-files" id="uploadedFiles">
+                    <!-- Uploaded files will be shown here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Product Modal -->
+    <div class="modal-overlay" id="productModal">
+        <div class="modal-container">
+            <button class="modal-close" id="modalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-content">
+                <h2 id="modalTitle">Добавить товар</h2>
+                <form id="productForm">
+                    <input type="hidden" id="productId">
+                    
+                    <div class="form-group">
+                        <label for="productTitle">Название товара *</label>
+                        <input type="text" id="productTitle" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productCategory">Категория *</label>
+                        <select id="productCategory" required>
+                            <option value="dresses">Платья</option>
+                            <option value="blouses">Блузки</option>
+                            <option value="skirts">Юбки</option>
+                            <option value="accessories">Аксессуары</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productDescription">Описание *</label>
+                        <textarea id="productDescription" rows="4" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productMaterial">Материал</label>
+                        <input type="text" id="productMaterial" placeholder="Например: Хлопок, полиэстер">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productArticle">Артикул</label>
+                        <input type="text" id="productArticle" placeholder="Например: DR-001">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Изображения *</label>
+                        <div class="images-preview" id="imagesPreview"></div>
+                        <button type="button" class="btn-secondary" id="addImagesBtn">
+                            <i class="fas fa-image"></i> Добавить изображения
+                        </button>
+                        <input type="file" id="imagesInput" multiple accept="image/*" style="display: none;">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Видео</label>
+                        <div class="video-preview" id="videoPreview"></div>
+                        <button type="button" class="btn-secondary" id="addVideoBtn">
+                            <i class="fas fa-video"></i> Добавить видео
+                        </button>
+                        <input type="file" id="videoInput" accept="video/*" style="display: none;">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Цвета *</label>
+                        <div class="colors-list" id="colorsList">
+                            <!-- Colors will be added here -->
+                        </div>
+                        <button type="button" class="btn-secondary" id="addColorBtn">
+                            <i class="fas fa-plus"></i> Добавить цвет
+                        </button>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Размеры *</label>
+                        <div class="sizes-list" id="sizesList">
+                            <!-- Sizes will be added here -->
+                        </div>
+                        <button type="button" class="btn-secondary" id="addSizeBtn">
+                            <i class="fas fa-plus"></i> Добавить размер
+                        </button>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel" id="cancelBtn">Отмена</button>
+                        <button type="submit" class="btn-save">Сохранить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
+

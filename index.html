@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZipSeoul - Магазин женской одежды</title>
+    <link rel="icon" type="image/jpeg" href="ave.jpg">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="index.html" style="text-decoration: none;">
+                        <h1>ZipSeoul</h1>
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="#collection">Коллекция</a></li>
+                    <li><a href="#gallery">Галерея</a></li>
+                    <li><a href="#about">О нас</a></li>
+                </ul>
+                <div class="working-hours-indicator">
+                    <span class="status-dot" id="statusDot"></span>
+                    <span class="working-hours-text">Время работы: <strong>10:00 - 21:00</strong></span>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2 class="hero-title">Элегантность в каждом стиле</h2>
+            <p class="hero-subtitle">Откройте для себя уникальную коллекцию женской одежды</p>
+            <a href="#collection" class="btn-primary">Смотреть коллекцию</a>
+        </div>
+        <div class="hero-overlay"></div>
+    </section>
+
+    <!-- Collection Section -->
+    <section id="collection" class="collection">
+        <div class="container">
+            <h2 class="section-title">Наша коллекция</h2>
+            <div class="collection-grid">
+                <a href="category.html?type=dresses" class="collection-item">
+                    <div class="collection-image">
+                        <div class="collection-icon">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <div class="collection-badge">Платья</div>
+                    </div>
+                    <h3>Платья</h3>
+                    <p class="collection-description">Элегантные платья для любого случая</p>
+                </a>
+                <a href="category.html?type=blouses" class="collection-item">
+                    <div class="collection-image">
+                        <div class="collection-icon">
+                            <i class="fas fa-vest"></i>
+                        </div>
+                        <div class="collection-badge">Блузки</div>
+                    </div>
+                    <h3>Блузки</h3>
+                    <p class="collection-description">Стильные блузки для создания идеального образа</p>
+                </a>
+                <a href="category.html?type=skirts" class="collection-item">
+                    <div class="collection-image">
+                        <div class="collection-icon">
+                            <i class="fas fa-female"></i>
+                        </div>
+                        <div class="collection-badge">Юбки</div>
+                    </div>
+                    <h3>Юбки</h3>
+                    <p class="collection-description">Разнообразные юбки для создания неповторимого стиля</p>
+                </a>
+                <a href="category.html?type=accessories" class="collection-item">
+                    <div class="collection-image">
+                        <div class="collection-icon">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <div class="collection-badge">Аксессуары</div>
+                    </div>
+                    <h3>Аксессуары</h3>
+                    <p class="collection-description">Стильные аксессуары для завершения образа</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Carousel Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2 class="section-title">Галерея</h2>
+            <div class="carousel-container">
+                <div class="carousel-wrapper">
+                    <div class="carousel-track" id="carouselTrack">
+                        <!-- Carousel items will be added dynamically -->
+                    </div>
+                </div>
+                <button class="carousel-btn prev" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn next" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="carousel-dots" id="carouselDots"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">О нас</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>ZipSeoul - Ваш стиль, ваша индивидуальность</h3>
+                    <p class="about-highlight">💎 Лучший магазин женской одежды 💎</p>
+                    <p>Мы специализируемся на продаже качественной корейской женской одежды. Наша миссия - сделать модную и стильную одежду доступной для каждой женщины.</p>
+                    <p class="about-highlight">💰 Самые низкие цены на корейскую одежду в СНГ 💰</p>
+                    <p>Мы работаем напрямую с производителями, что позволяет нам предлагать лучшие цены без наценок посредников. Вы получаете качественную одежду по самым выгодным ценам.</p>
+                    <p class="about-highlight">⏰ Самые отзывчивые менеджеры ⏰</p>
+                    <p>Наши менеджеры всегда готовы помочь вам с выбором, ответить на все вопросы и обеспечить индивидуальный подход к каждому клиенту. Мы ценим ваше время и стремимся к максимальному комфорту при покупке.</p>
+                    <p class="about-highlight">📖 Доставка в любую точку: СДЭК, Почта, Европочта 📖</p>
+                    <p>Мы осуществляем доставку в любую точку СНГ через надежные службы доставки. Вы можете выбрать удобный для вас способ получения заказа.</p>
+                    <ul class="about-features">
+                        <li><i class="fas fa-check"></i> Эксклюзивные коллекции из Кореи</li>
+                        <li><i class="fas fa-check"></i> Качественные материалы и пошив</li>
+                        <li><i class="fas fa-check"></i> Актуальные тренды сезона</li>
+                        <li><i class="fas fa-check"></i> Быстрая и надежная доставка</li>
+                        <li><i class="fas fa-check"></i> Профессиональная консультация</li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <div class="about-placeholder">
+                        <i class="fas fa-store"></i>
+                        <p>Ваш надежный партнер в мире моды</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ZipSeoul</h3>
+                    <p>Магазин элегантной женской одежды</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Следите за нами</h4>
+                    <div class="social-links">
+                        <a href="https://t.me/zipseoul" target="_blank" class="social-link" aria-label="Telegram">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@zipseoul?_r=1&_t=ZM-92KFi5TbBZA" target="_blank" class="social-link" aria-label="TikTok">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="https://www.instagram.com/_zip_seoul_?igsh=MWo5YnVhYnozdHQ3OQ==" target="_blank" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://youtube.com/@zip_seoul?si=KanktnjBSdLYUDm-" target="_blank" class="social-link" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <p class="working-hours"><i class="far fa-clock"></i> Время работы: <strong>10:00 - 21:00</strong></p>
+                    <div class="managers-section">
+                        <p class="managers-title"><strong>Менеджеры для заказа через Telegram:</strong></p>
+                        <p><i class="fab fa-telegram"></i> Владислав: <a href="https://t.me/lemzzzzy" target="_blank" class="manager-link">@lemzzzzy</a></p>
+                        <p><i class="fab fa-telegram"></i> Вячеслав: <a href="https://t.me/Otkatov88" target="_blank" class="manager-link">@Otkatov88</a></p>
+                        <p class="managers-title"><strong>Менеджеры для заказа через WhatsApp:</strong></p>
+                        <p><i class="fab fa-whatsapp"></i> Владислав: <a href="https://wa.me/375445774111" target="_blank" class="manager-link">+375445774111</a></p>
+                        <p><i class="fab fa-whatsapp"></i> Вячеслав: <a href="https://wa.me/375257009060" target="_blank" class="manager-link">+375257009060</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ZipSeoul. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

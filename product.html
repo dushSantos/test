@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Товар - ZipSeoul</title>
+    <link rel="icon" type="image/jpeg" href="ave.jpg">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="index.html" style="text-decoration: none;">
+                        <h1>ZipSeoul</h1>
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="index.html#collection">Коллекция</a></li>
+                    <li><a href="index.html#gallery">Галерея</a></li>
+                    <li><a href="index.html#about">О нас</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Product Section -->
+    <section class="product-section">
+        <div class="container">
+            <div class="breadcrumbs" id="breadcrumbs">
+                <a href="index.html">Главная</a>
+                <span>/</span>
+                <span id="breadcrumbCategory">Категория</span>
+                <span>/</span>
+                <span id="breadcrumbProduct">Товар</span>
+            </div>
+            
+            <div class="product-container">
+                <div class="product-gallery">
+                    <div class="product-main-image">
+                        <img id="mainProductImage" src="" alt="Product">
+                        <button class="zoom-btn" id="zoomBtn">
+                            <i class="fas fa-search-plus"></i>
+                        </button>
+                    </div>
+                    <div class="product-thumbnails" id="productThumbnails">
+                        <!-- Thumbnails will be added dynamically -->
+                    </div>
+                </div>
+                
+                <div class="product-details">
+                    <h1 class="product-title" id="productTitle">Название товара</h1>
+                    
+                    <div class="product-price-section">
+                        <p class="price-text">Цена: <a href="https://t.me/zipseoul" target="_blank" class="manager-link-inline">уточняйте у менеджера</a></p>
+                    </div>
+                    
+                    <div class="product-description" id="productDescription">
+                        <p>Описание товара будет загружено здесь</p>
+                    </div>
+                    
+                    <div class="product-options">
+                        <div class="option-group">
+                            <label class="option-label">Цвет:</label>
+                            <div class="color-options" id="colorOptions">
+                                <!-- Color options will be added dynamically -->
+                            </div>
+                        </div>
+                        
+                        <div class="option-group">
+                            <label class="option-label">Размер:</label>
+                            <div class="size-options" id="sizeOptions">
+                                <!-- Size options will be added dynamically -->
+                            </div>
+                        </div>
+                        
+                        <div class="option-group">
+                            <label class="option-label">Количество:</label>
+                            <div class="quantity-selector">
+                                <button class="quantity-btn" id="decreaseQty">-</button>
+                                <input type="number" id="quantity" value="1" min="1" readonly>
+                                <button class="quantity-btn" id="increaseQty">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-actions">
+                        <a href="https://t.me/zipseoul" target="_blank" class="btn-order">
+                            <i class="fab fa-telegram"></i> Заказать через Telegram
+                        </a>
+                    </div>
+                    
+                    <div class="product-info">
+                        <div class="info-item">
+                            <span class="info-label">Артикул:</span>
+                            <span class="info-value" id="productArticle">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Категория:</span>
+                            <span class="info-value" id="productCategory">-</span>
+                        </div>
+                    </div>
+                    
+                    <div class="share-section">
+                        <span class="share-label">Поделиться:</span>
+                        <div class="share-buttons">
+                            <a href="#" class="share-btn" data-platform="email" title="Email">
+                                <i class="far fa-envelope"></i>
+                            </a>
+                            <a href="#" class="share-btn" data-platform="facebook" title="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="share-btn" data-platform="vk" title="VK">
+                                <i class="fab fa-vk"></i>
+                            </a>
+                            <a href="#" class="share-btn" data-platform="whatsapp" title="WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="#" class="share-btn" data-platform="pinterest" title="Pinterest">
+                                <i class="fab fa-pinterest"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ZipSeoul</h3>
+                    <p>Магазин элегантной женской одежды</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Следите за нами</h4>
+                    <div class="social-links">
+                        <a href="https://t.me/zipseoul" target="_blank" class="social-link" aria-label="Telegram">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@zipseoul?_r=1&_t=ZM-92KFi5TbBZA" target="_blank" class="social-link" aria-label="TikTok">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="https://www.instagram.com/_zip_seoul_?igsh=MWo5YnVhYnozdHQ3OQ==" target="_blank" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://youtube.com/@zip_seoul?si=KanktnjBSdLYUDm-" target="_blank" class="social-link" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <p class="working-hours"><i class="far fa-clock"></i> Время работы: <strong>10:00 - 21:00</strong></p>
+                    <div class="managers-section">
+                        <p class="managers-title"><strong>Менеджеры для заказа через Telegram:</strong></p>
+                        <p><i class="fab fa-telegram"></i> Владислав: <a href="https://t.me/lemzzzzy" target="_blank" class="manager-link">@lemzzzzy</a></p>
+                        <p><i class="fab fa-telegram"></i> Вячеслав: <a href="https://t.me/Otkatov88" target="_blank" class="manager-link">@Otkatov88</a></p>
+                        <p class="managers-title"><strong>Менеджеры для заказа через WhatsApp:</strong></p>
+                        <p><i class="fab fa-whatsapp"></i> Владислав: <a href="https://wa.me/375445774111" target="_blank" class="manager-link">+375445774111</a></p>
+                        <p><i class="fab fa-whatsapp"></i> Вячеслав: <a href="https://wa.me/375257009060" target="_blank" class="manager-link">+375257009060</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ZipSeoul. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="product.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
